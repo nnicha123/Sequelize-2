@@ -4,7 +4,12 @@ module.exports = (sequelize,DataTypes) => {
             type:DataTypes.FLOAT
         }
     },{
-        tableName:'accounts'
+        tableName:'accounts',
+        timestamps:false
     })
+    model.associate = models => {
+        model.belongsTo(models.Branch, {foreignKey:'branch_id'})
+        model.belongsToMany(models.Customer,{through:models.Owns,foreignKey:'account_id'})
+    }
     return model;
 }
