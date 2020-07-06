@@ -35,7 +35,7 @@ const createOwns = async (req,res) => {
 }
 
 const getOwns = async (req,res) => {
-    const allOwns = await db.Owns.findAll({include:[db.Branch,db.Manager]})
+    const allOwns = await db.Owns.findAll({include:[{model:db.Branch},{model:db.Manager}]})
     res.status(200).send(allOwns)
 }
 
